@@ -1,0 +1,9 @@
+{
+    "rds_host": "bookspace-database.c7b08tpk6t3j.us-east-1.rds.amazonaws.com",
+    "rds_port": "3306",
+    "rds_user": "vxjian",
+    "rds_password" : "mybookspace",
+    "rds_db": "BOOKS_DB",
+    "server_host": "127.0.0.1",
+    "server_port":"8080"
+}
