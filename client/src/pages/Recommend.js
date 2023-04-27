@@ -4,8 +4,7 @@ import { FaSearch, FaPlusCircle } from "react-icons/fa";
 
 import store from "../utils/store";
 import Navbar from "../components/Navbar";
-import searchBooks from "../utils/searchAPI";
-import { getExploreSearch } from "../fetcher";
+import getRecommendation from "../utils/recommendAPI";
 
 const dataStorage = JSON.parse(window.localStorage.getItem("dataKanban"));
 
@@ -38,23 +37,26 @@ const Book = ({ book }) => {
 
 const Recommend = () => {
     const [dashData, setDashData] = useState(initialState);
-    const [searchQuery, setSearchQuery] = useState("");
+
+    const [bookQuery, setBookQuery] = useState("");
+    const [numQuery, setNumQuery] = useState("");
 
     const [books, setBooks] = useState([]);
 
+    const [recs, setRecs] = useState("");
+
     const handleSubmit = async (event) => {
         event.preventDefault();
-
-        // const results = searchBooks(searchQuery);
-        const results = await searchBooks(searchQuery);
-        setBooks(results);
-        console.log("GOT SEARCH RESULTS:")
-        console.log(results)
-        // window.localStorage.setItem("showResStorage", JSON.stringify(true));
+        const results = await getRecommendation(bookQuery, numQuery);
+        setRecs(results);
     }
 
-    const handleSearchQueryChange = (event) => {
-        setSearchQuery(event.target.value);
+    const handleBookQueryChange = (event) => {
+        setBookQuery(event.target.value);
+    };
+
+    const handleNumQueryChange = (event) => {
+        setNumQuery(event.target.value);
     };
 
     // add to dashboard
@@ -103,8 +105,8 @@ const Recommend = () => {
                         className="input-text"
                         placeholder="Harry Potter, The Catcher in the Rye, The Hunger Games..."
                         name="title"
-                        value={searchQuery}
-                        onChange={handleSearchQueryChange}
+                        value={bookQuery}
+                        onChange={handleBookQueryChange}
                     />
                 </form>
                 <h3>Number of recommendations:</h3>
@@ -114,14 +116,17 @@ const Recommend = () => {
                         className="input-text"
                         placeholder="Enter a number"
                         name="title"
-                        value={searchQuery}
-                        onChange={handleSearchQueryChange}
+                        value={numQuery}
+                        onChange={handleNumQueryChange}
                     />
                 </form>
-                <button className="big-button">
+                <button className="big-button" onClick={handleSubmit}>
                     <h3>Generate</h3>
                 </button>
-                <br/>
+                
+                <div class="recs-output">
+                    <p>{recs}</p>
+                </div>
                 <div class="pick-link"><h3>Or, <a href="/explore">back to Explore</a></h3></div>
             </div>
 

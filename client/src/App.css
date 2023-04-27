@@ -221,3 +221,11 @@ margin-left: 190px;
   border: none;
   border-radius: 5px;
 }
+
+.big-button:hover {
+  cursor: pointer;
+}
+
+.recs-output {
+  white-space: pre-line;
+}
