@@ -1,5 +1,5 @@
 import axios from 'axios';
-const apiKey = "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";
+const apiKey = "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"; // FIX: MAKE PRIVATE
 
 const getRecommendation = async (bookQuery, numQuery) => {
     const client = axios.create({
