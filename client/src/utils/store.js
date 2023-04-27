@@ -6,13 +6,13 @@ const data = {
             items: [
                 {
                     id: "1",
-                    isbn: "9780708982280",
                     title: "Pride and Prejudice",
+                    image: "https://books.google.com/books/content?id=x6anSwAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
                 },
                 {
                     id: "2",
-                    isbn: "9780684801520",
                     title: "The Great Gatsby",
+                    image: "https://books.google.com/books/content?id=gnQJEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
                 },
             ],
         },
@@ -22,8 +22,8 @@ const data = {
             items: [
                 {
                     id: "3",
-                    isbn: "9781439582633",
                     title: "Diary of a Wimpy Kid",
+                    image: "https://books.google.com/books/content?id=Ln4HejRlMXYC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
                 },
             ],
         },

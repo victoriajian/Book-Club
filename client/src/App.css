@@ -52,7 +52,7 @@ img {
 }
 
 .form-container {
-  width: 100%;
+  width: 75%;
   margin-bottom: 20px;
   display: flex;
   border-radius: calc(10px);
@@ -60,10 +60,15 @@ img {
   justify-content: space-evenly;
 }
 
+.recommend {
+  margin-top: 5px;
+  width: 60%;
+}
+
 .input-text {
   font-size: 1rem;
   font-weight: 400;
-  width: 85%;
+  width: 90%;
   padding-right: 5px;
   border-radius: calc(0.5 * 100px);
 }
@@ -122,15 +127,15 @@ border: none;
 
 .navBar a {
 display: block;
-padding: 15px 40px;
+margin: 30px 40px;
 text-decoration: none;
 color: white;
 font-weight: 600;
 }
 
 .navBar a:hover {
-color:black;
-transition: 0.2s;
+color:#5d7a6b;
+transition: 0.3s;
 }
 
 .navBar li:first-child {
@@ -148,12 +153,71 @@ margin-left: 190px;
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 1rem;
+  grid-template-columns: repeat(4, 0fr);
+  grid-gap: 1.5rem;
 }
 
 .grid-item {
   padding: 1rem;
   background-color:#eaeaea;
-  border-radius: 10px;
+  border-radius: 8px;
+  min-height: 50vh;
+  width: 30vh;
+  margin: 0.5rem 0;
+  position: relative;
+}
+
+.grid-item h4 {
+  color: white;
+  background-color: darkseagreen;
+  padding: 5px;
+  border-radius: 8px;
+  margin: 0;
+}
+
+.grid-item h4:hover {
+  color:#5d7a6b;
+  cursor: pointer;
+}
+
+.grid-item button {
+  border: none;
+  margin: 10px 0;
+  position: absolute;
+    bottom: 5px;
+}
+
+.grid-item img {
+  margin: auto;
+  display: block;
+  height: 220px;
+  width: 150px;
+  object-fit: cover;
+  padding-bottom: 15px;
+}
+
+.pick-link {
+  margin:30px 0;
+}
+
+.pick-link a {
+  text-decoration: none;
+  color:#5d7a6b;
+  font-style:italic;
+}
+
+.pick-link a:hover {
+  color:darkseagreen;
+  cursor: pointer;
+}
+
+.big-button h3 {
+  color:white;
+}
+
+.big-button {
+  background-color:darkseagreen;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
 }

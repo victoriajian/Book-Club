@@ -20,7 +20,7 @@ export default function ListItem({ card, index, listId }) {
       setOpen(!open);
     };
 
-    const image = "https://covers.openlibrary.org/b/isbn/" + card.isbn + "-M.jpg";
+    // const image = "https://covers.openlibrary.org/b/isbn/" + card.isbn + "-M.jpg";
 
     const onSubmit = (event) => {
       event.preventDefault(event);
@@ -58,7 +58,7 @@ export default function ListItem({ card, index, listId }) {
                   className="card-title-container"
                 >
                   <p>{card.title}</p>
-                  <img src={image} alt="book cover"/>
+                  <img src={card.image} alt="book cover"/>
                   <button
                     onClick={() => {
                       removeCard(index, listId);
