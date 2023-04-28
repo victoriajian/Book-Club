@@ -15,14 +15,19 @@ const Navbar = () => {
         },
         {
             id: 2,
-            path: "/explore",
-            text: "Explore",
+            path: "/search",
+            text: "Search",
         },
         {
             id: 3,
-            path: "/bookclub",
-            text: "Book Club",
+            path: "/explore",
+            text: "Explore",
         },
+        // {
+        //     id: 4,
+        //     path: "/bookclub",
+        //     text: "Book Club",
+        // },
         // {
         //     id: 4,
         //     path: "/test",

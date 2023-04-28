@@ -3,17 +3,17 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Dashboard from './pages/Dashboard';
-import Explore from './pages/Explore';
+import Search from './pages/Search';
 import BookClub from './pages/BookClub';
-import Recommend from './pages/Recommend';
+import Explore from './pages/Explore';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route exact path="/" element={<Dashboard />} />
+        <Route exact path="/search" element={<Search />} />
         <Route exact path="/explore" element={<Explore />} />
-        <Route exact path="/recommend" element={<Recommend />} />
         <Route exact path="/bookclub" element={<BookClub />} />
       </Routes>
     </Router>
