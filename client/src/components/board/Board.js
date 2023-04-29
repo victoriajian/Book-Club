@@ -7,7 +7,7 @@ import List from "./List";
 import store from "../../utils/store";
 import StoreApi from "../../utils/storeApi";
 
-import "./styles.scss";
+import "./styles.css";
 
 const dataStorage = JSON.parse(window.localStorage.getItem("dataKanban"));
 

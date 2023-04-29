@@ -19,9 +19,9 @@ const initialState = () => {
 };
 
 const Book = ({ book }) => {
-    const title = book.volumeInfo.title?.substr(0, 53) || '';
+    const title = book.volumeInfo.title ? book.volumeInfo.title.substr(0, 53) : '';
     const author = book.volumeInfo.authors ? book.volumeInfo.authors[0] : '';
-    const description = book.volumeInfo.description?.substr(0, 150) || '';
+    // const description = book.volumeInfo.description?.substr(0, 150) || '';
     const imageLinks = book.volumeInfo.imageLinks;
     const thumbnail = imageLinks ? imageLinks.thumbnail : 'https://via.placeholder.com/128x196?text=No+Image';
 

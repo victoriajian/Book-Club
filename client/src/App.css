@@ -24,6 +24,10 @@ h3 {
   color:#5d7a6b;
 }
 
+a:hover {
+  transition: 0.3s;
+}
+
 img {
   margin: 10px 0;
 }
@@ -57,19 +61,19 @@ img {
   display: flex;
   border-radius: calc(10px);
   box-shadow: 0 0.5px 3px 0 rgba(0, 0, 0, 0.38);
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
 }
 
 .recommend {
-  margin-top: 5px;
-  width: 60%;
+  margin-top: 10px;
+  /* width: 60%; */
 }
 
 .input-text {
   font-size: 1rem;
   font-weight: 400;
   width: 90%;
-  padding-right: 5px;
+  margin-left: 8px;
   border-radius: calc(0.5 * 100px);
 }
 
@@ -135,7 +139,6 @@ font-weight: 600;
 
 .navBar a:hover {
 color:#5d7a6b;
-transition: 0.3s;
 }
 
 .navBar li:first-child {
@@ -197,13 +200,14 @@ margin-left: 190px;
 }
 
 .pick-link {
-  margin:30px 0;
+  margin:10px 0;
 }
 
 .pick-link a {
+  font-weight:600;
   text-decoration: none;
   color:#5d7a6b;
-  font-style:italic;
+  /* font-style:italic; */
 }
 
 .pick-link a:hover {

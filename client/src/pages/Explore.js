@@ -1,10 +1,12 @@
 import React, { useState } from "react"
-import { v4 as uuid } from "uuid";
-import { FaSearch, FaPlusCircle } from "react-icons/fa";
 
 import store from "../utils/store";
 import Navbar from "../components/Navbar";
 import exploreBooks from "../utils/exploreAPI";
+
+
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 
 const dataStorage = JSON.parse(window.localStorage.getItem("dataKanban"));
 
@@ -18,7 +20,7 @@ const initialState = () => {
 };
 
 const Book = ({ book }) => {
-    const description = book.volumeInfo.description?.substr(0, 150) || '';
+    // const description = book.volumeInfo.description?.substr(0, 150) || '';
     const imageLinks = book.volumeInfo.imageLinks;
     const thumbnail = imageLinks ? imageLinks.thumbnail : 'https://via.placeholder.com/128x196?text=No+Image';
 
@@ -95,45 +97,45 @@ const Recommend = () => {
         <div className="page__content">
             <Navbar />
             <img src="https://em-content.zobj.net/thumbs/240/apple/354/books_1f4da.png" width={60} />
-            <h1>Explore</h1>
-            <h2>Find your next read.</h2>
+            <h1>Find your next read</h1>
+            <p><i>Powered by OpenAI GPT-3.</i></p>
+            <div className="pick-link"><p>Already know what you're reading? <a href="/search">Back to Search</a></p></div>
             <br/>
-            <p>Generates recommendations based on your favorite book. <i>Powered by OpenAI GPT-3.</i></p>
-            <br/>
-            <div className="inner">
-            <h3>Your favorite book:</h3>
-                <form className="form-container recommend">
-                    <input
-                        type="text"
-                        className="input-text"
-                        placeholder="Harry Potter, The Catcher in the Rye, The Hunger Games..."
-                        name="title"
-                        value={bookQuery}
-                        onChange={handleBookQueryChange}
-                    />
-                </form>
-                {/* <h3>Number of recommendations:</h3>
-                <form className="form-container recommend">
-                    <input
-                        type="text"
-                        className="input-text"
-                        placeholder="Enter a number"
-                        name="title"
-                        value={numQuery}
-                        onChange={handleNumQueryChange}
-                    />
-                </form> */}
-                <button className="big-button" onClick={handleSubmit}>
-                    <h3>Generate</h3>
-                </button>
-                
-                <div class="recs-output">
-                    <p>{recs}</p>
-                </div>
-                <div class="pick-link"><h3><a href="/search">Back to Search</a></h3></div>
-            </div>
+            <Tabs>
+                <TabList>
+                    <Tab>Basic</Tab>
+                    <Tab>Advanced</Tab>
+                </TabList>
 
-            
+                <TabPanel>
+                    <div className="inner">
+                    <p>Generates recommendations based on your favorite book.</p>
+                    <br/>
+                        <h4>Your favorite book:</h4>
+                        <form className="form-container recommend">
+                            <input
+                                type="text"
+                                className="input-text"
+                                placeholder="Harry Potter, The Catcher in the Rye, The Hunger Games..."
+                                name="title"
+                                value={bookQuery}
+                                onChange={handleBookQueryChange}
+                            />
+                        </form>
+                        <button className="big-button" onClick={handleSubmit}>
+                            <h3>Generate</h3>
+                        </button>
+
+                        <div class="recs-output">
+                            <p>{recs}</p>
+                        </div>
+                        
+                    </div>
+                </TabPanel>
+                <TabPanel>
+                </TabPanel>
+            </Tabs>
+            <br />
         </div>
     );
 };

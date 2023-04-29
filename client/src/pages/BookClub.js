@@ -1,13 +1,13 @@
 import React from "react"
 import Navbar from "../components/Navbar";
 
-import {
-    Table,
-    Row,
-    Col,
-    Divider,
-    Rate
-} from 'antd'
+// import {
+//     Table,
+//     Row,
+//     Col,
+//     Divider,
+//     Rate
+// } from 'antd'
 
 const activityColumns = [
     {
@@ -78,13 +78,13 @@ export default function BookClub() {
             <img src="https://em-content.zobj.net/thumbs/240/apple/354/books_1f4da.png" width={60}/>
             <h1>Book Club</h1>
 
-            <div style={{ width: "70vw", margin: "0 auto", marginTop: "5vh" }}>
+            {/* <div style={{ width: "70vw", margin: "0 auto", marginTop: "5vh" }}>
                             <Table
                                 columns={activityColumns}
                                 dataSource={testActivityData}
                                 // pagination={{ pageSizeOptions: [5, 10], defaultPageSize: 5, showQuickJumper: false }}
                             />
-                        </div>
+                        </div> */}
         </div>
     );
 }

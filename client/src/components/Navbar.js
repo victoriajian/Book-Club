@@ -20,7 +20,7 @@ const Navbar = () => {
         },
         {
             id: 3,
-            path: "/explore",
+            path: "/explore/first",
             text: "Explore",
         },
         // {

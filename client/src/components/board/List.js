@@ -3,7 +3,7 @@ import { Draggable, Droppable } from "react-beautiful-dnd";
 
 import ListItem from "./ListItem";
 
-import "./styles.scss"
+import "./styles.css"
 
 export default function List({ list, index }) {
     return (

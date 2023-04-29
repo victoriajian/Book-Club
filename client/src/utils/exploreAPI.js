@@ -1,9 +1,9 @@
 import axios from 'axios';
-import keys from './keys';
 
-const apiKey = keys.OPEN_AI_API;
+const apiKey = process.env.REACT_APP_OPENAI_API_KEY;
 
 const exploreBooks = async (bookQuery) => {
+    console.log("apikey: " + apiKey);
     const client = axios.create({
         headers: {
             Authorization: "Bearer " + apiKey,

@@ -4,11 +4,9 @@ import TextareaAutosize from "react-textarea-autosize";
 import { Draggable } from "react-beautiful-dnd";
 import { BiTrash } from "react-icons/bi"
 
-import Container from "./Container";
-
 import storeApi from "../../utils/storeApi";
 
-import "./styles.scss"
+import "./styles.css"
 
 export default function ListItem({ card, index, listId }) {
     const [open, setOpen] = useState(false);
