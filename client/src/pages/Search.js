@@ -103,7 +103,7 @@ const Search = () => {
                     </button>
                 </form>
 
-                <div class="pick-link"><h3>Or, <a href="/explore">let us pick a book for you</a></h3></div>
+                <div className="pick-link"><h3>Or, <a href="/explore">let us pick a book for you</a></h3></div>
 
                 <div className="grid-container">
                     {books.map((book) => (

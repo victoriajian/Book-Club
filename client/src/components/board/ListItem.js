@@ -52,7 +52,7 @@ export default function ListItem({ card, index, listId }) {
                 />
               ) : (
                 <div
-                  onClick={() => setOpen(!open)}
+                  // onClick={() => setOpen(!open)}
                   className="card-title-container"
                 >
                   <p>{card.title}</p>

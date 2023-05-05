@@ -1,9 +1,11 @@
 import React, { useState } from "react"
+import { v4 as uuid } from "uuid";
 
 import store from "../utils/store";
 import Navbar from "../components/Navbar";
-import exploreBooks from "../utils/exploreAPI";
-
+import { exploreBooks } from "../utils/exploreAPI";
+import PreferencesSurvey from "../components/explore/Preferences";
+import SurveyComponent from "../components/explore/Survey";
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
@@ -20,19 +22,19 @@ const initialState = () => {
 };
 
 const Book = ({ book }) => {
-    // const description = book.volumeInfo.description?.substr(0, 150) || '';
-    const imageLinks = book.volumeInfo.imageLinks;
-    const thumbnail = imageLinks ? imageLinks.thumbnail : 'https://via.placeholder.com/128x196?text=No+Image';
-
-    const testAddBook = () => {
-        console.log("adding: " + book.volumeInfo.title)
-    }
+    const title = book.title ? book.title.substr(0, 53) : '';
+    const author = book.author ? book.author : '';
+    const description = book.description?.substr(0, 400) || '';
+    // const isbn = book.isbn;
+    // const thumbnail = isbn ? `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg` : 'https://via.placeholder.com/128x196?text=No+Image';
 
     return (
         <div>
-            <img src={thumbnail} alt={`Cover of ${book.volumeInfo.title}`} />
-            <h3>{book.volumeInfo.title}</h3>
-            <p>{book.volumeInfo.authors[0]}</p>
+            {/* <img src={thumbnail} alt={`Cover of ${title}`} /> */}
+            <h3>{title}</h3>
+            <p><b>by {author}</b></p>
+            <br />
+            <p>{description}</p>
         </div>
     );
 };
@@ -47,11 +49,17 @@ const Recommend = () => {
 
     const [recs, setRecs] = useState("");
 
+    const [generating, setGenerating] = useState("");
+
     const handleSubmit = async (event) => {
         event.preventDefault();
-        setRecs("\nGenerating...");
+        setGenerating("\nGenerating...");
         const results = await exploreBooks(bookQuery);
         setRecs(results);
+
+        const arr = JSON.parse(results);
+        setBooks(arr);
+        setGenerating("");
     }
 
     const handleBookQueryChange = (event) => {
@@ -65,9 +73,9 @@ const Recommend = () => {
     // add to dashboard
 
     const addBook = (book) => {
-        const id = book.id;
-        const title = book.volumeInfo.title;
-        const image = book.volumeInfo.imageLinks.thumbnail;
+        const id = uuid();
+        const title = book.title;
+        const image = 'https://via.placeholder.com/128x196?text=No+Image';
 
         if (!title) {
             return;
@@ -100,18 +108,16 @@ const Recommend = () => {
             <h1>Find your next read</h1>
             <p><i>Powered by OpenAI GPT-3.</i></p>
             <div className="pick-link"><p>Already know what you're reading? <a href="/search">Back to Search</a></p></div>
-            <br/>
+            <br />
             <Tabs>
                 <TabList>
-                    <Tab>Basic</Tab>
-                    <Tab>Advanced</Tab>
+                    <Tab>Get Similar</Tab>
+                    <Tab>Your Preferences</Tab>
                 </TabList>
 
                 <TabPanel>
                     <div className="inner">
-                    <p>Generates recommendations based on your favorite book.</p>
-                    <br/>
-                        <h4>Your favorite book:</h4>
+                        <p>Generates recommendations based on books you like.</p>
                         <form className="form-container recommend">
                             <input
                                 type="text"
@@ -123,16 +129,27 @@ const Recommend = () => {
                             />
                         </form>
                         <button className="big-button" onClick={handleSubmit}>
-                            <h3>Generate</h3>
+                            <h3>Get similar books</h3>
                         </button>
-
-                        <div class="recs-output">
-                            <p>{recs}</p>
+                        <p style={{ display: "inline" }}><i>Results may take up to 30 seconds.</i></p>
+                        <div className="recs-output">
+                            <p>{generating}</p>
                         </div>
-                        
+                        <div className="grid-container">
+                            {books.map((book) => (
+                                <div className="grid-item-explore">
+                                    <Book key={book.id} book={book} />
+                                    <button onClick={() => addBook(book)}>
+                                        <h4>Add to List</h4>
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
+
                     </div>
                 </TabPanel>
                 <TabPanel>
+                    <SurveyComponent />
                 </TabPanel>
             </Tabs>
             <br />

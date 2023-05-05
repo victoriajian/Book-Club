@@ -154,23 +154,61 @@ margin-left: 190px;
 
 /* Explore Page */
 
-.grid-container {
+.columns {
   display: grid;
-  grid-template-columns: repeat(4, 0fr);
+  grid-template-columns: repeat(3, 0fr);
   grid-gap: 1.5rem;
 }
 
-.grid-item {
+.col-item {
   padding: 1rem;
-  background-color:#eaeaea;
   border-radius: 8px;
-  min-height: 50vh;
-  width: 30vh;
+  width: 40vh;
   margin: 0.5rem 0;
   position: relative;
 }
 
-.grid-item h4 {
+.col-item p {
+  display: inline;
+}
+
+.checkbox-item {
+  padding: 5px 0;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 0fr);
+  grid-gap: 1.5rem;
+  padding-top: 20px;
+}
+
+.grid-container-explore {
+  display: grid;
+  grid-template-columns: repeat(3, 0fr);
+  grid-gap: 1.5rem;
+  padding-top: 20px;
+}
+
+.grid-item, .grid-item-explore {
+  padding: 1rem;
+  background-color:#eaeaea;
+  border-radius: 8px;
+  margin: 0.5rem 0;
+  position: relative;
+}
+
+.grid-item {
+  min-height: 50vh;
+  width: 30vh;
+}
+
+.grid-item-explore {
+  min-width: 40vh;
+  display: block;
+}
+
+.grid-item h4, .grid-item-explore h4 {
   color: white;
   background-color: darkseagreen;
   padding: 5px;
@@ -178,19 +216,18 @@ margin-left: 190px;
   margin: 0;
 }
 
-.grid-item h4:hover {
+.grid-item h4:hover, .grid-item-explore h4:hover {
   color:#5d7a6b;
   cursor: pointer;
 }
 
-.grid-item button {
+.grid-item button, .grid-item-explore button {
   border: none;
   margin: 10px 0;
-  position: absolute;
-    bottom: 5px;
+  bottom: 5px;
 }
 
-.grid-item img {
+.grid-item img, .grid-item-explore img {
   margin: auto;
   display: block;
   height: 220px;
@@ -222,6 +259,7 @@ margin-left: 190px;
 .big-button {
   background-color:darkseagreen;
   padding: 8px;
+  margin-right: 20px;
   border: none;
   border-radius: 5px;
 }
