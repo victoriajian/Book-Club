@@ -1,9 +1,7 @@
-import React, { useState } from "react"
+import React from "react"
 import { NavLink } from "react-router-dom"
 
 const Navbar = () => {
-    const [navbarOpen, setNavbarOpen] = useState(false)
-
     const links = [
         {
             id: 1,
@@ -22,10 +20,6 @@ const Navbar = () => {
         },
     ]
 
-    const closeMenu = () => {
-        setNavbarOpen(false)
-    }
-
     return (
         <nav className="navBar">
             <ul>
@@ -35,7 +29,6 @@ const Navbar = () => {
                             <NavLink
                                 to={link.path}
                                 activeclassname="active-link"
-                                onClick={() => closeMenu()}
                                 >
                                 {link.text}
                             </NavLink>

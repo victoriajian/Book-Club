@@ -4,7 +4,6 @@ import { v4 as uuid } from "uuid";
 import store from "../utils/store";
 import Navbar from "../components/Navbar";
 import { exploreBooks, getCoverImage } from "../utils/exploreAPI";
-import PreferencesSurvey from "../components/explore/Preferences";
 import SurveyComponent from "../components/explore/Survey";
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
@@ -90,7 +89,6 @@ const Recommend = () => {
             ...dashData,
             lists: {
                 ...dashData.lists,
-                ["to-read"]: list,
             },
         };
         setDashData(newState);
@@ -100,7 +98,7 @@ const Recommend = () => {
     return (
         <div className="page__content">
             <Navbar />
-            <img src="https://em-content.zobj.net/thumbs/240/apple/354/books_1f4da.png" width={60} />
+            <img src="https://em-content.zobj.net/thumbs/240/apple/354/books_1f4da.png" alt="books emoji logo" width={60} />
             <h1>Find your next read</h1>
             <p><i>Powered by OpenAI GPT-3.</i></p>
             <div className="pick-link"><p>Already know what you're reading? <a href="/search">Back to Search</a></p></div>
