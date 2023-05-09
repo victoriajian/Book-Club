@@ -24,11 +24,12 @@ const Book = ({ book }) => {
     // const description = book.volumeInfo.description?.substr(0, 150) || '';
     const imageLinks = book.volumeInfo.imageLinks;
     const thumbnail = imageLinks ? imageLinks.thumbnail : 'https://via.placeholder.com/128x196?text=No+Image';
+    const link = book.volumeInfo.infoLink ? book.volumeInfo.infoLink : '';
 
     return (
         <div>
-            <img src={thumbnail} alt={`Cover of ${title}`} />
-            <h3>{title}</h3>
+            <a href={link} target="_blank"><img src={thumbnail} alt={`Cover of ${title}`} />
+            <h3>{title}</h3></a>
             <p>{author}</p>
         </div>
     );

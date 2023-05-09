@@ -8,6 +8,20 @@ import storeApi from "../../utils/storeApi";
 
 import "./styles.css"
 
+const Book = ({ book }) => {
+  const title = book.title ? book.title.substr(0, 53) : '';
+  const image = book.image ? book.image : 'https://via.placeholder.com/128x196?text=No+Image';
+
+  return (
+      <div>
+          <img src={image} alt={`Cover of ${title}`} />
+          <h3>{title}</h3>
+          {/* <p><b>by {author}</b></p>
+          <p>{description}</p> */}
+      </div>
+  );
+};
+
 export default function ListItem({ card, index, listId }) {
     const [open, setOpen] = useState(false);
     const [newTitle, setNewTitle] = useState(card.title);

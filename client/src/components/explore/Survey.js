@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { v4 as uuid } from "uuid";
-import { explorePreferences } from "../../utils/exploreAPI"
+import { explorePreferences, getCoverImage } from "../../utils/exploreAPI"
 import store from "../../utils/store";
+import { MdOutlineExpandCircleDown } from "react-icons/md";
 
 const dataStorage = JSON.parse(window.localStorage.getItem("dataKanban"));
 
@@ -19,14 +20,13 @@ const Book = ({ book }) => {
     const author = book.author ? book.author : '';
     const description = book.description ? book.description : '';
     // const isbn = book.isbn;
-    // const thumbnail = isbn ? `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg` : 'https://via.placeholder.com/128x196?text=No+Image';
+    const image = book.image ? book.image : 'https://via.placeholder.com/128x196?text=No+Image';
 
     return (
         <div>
-            {/* <img src={thumbnail} alt={`Cover of ${title}`} /> */}
+            <img src={image} alt={`Cover of ${title}`} />
             <h3>{title}</h3>
             <p><b>by {author}</b></p>
-            <br />
             <p>{description}</p>
         </div>
     );
@@ -80,14 +80,22 @@ const SurveyComponent = () => {
         const results = await explorePreferences(genres, types, features);
         console.log(results)
 
-        setBooks(JSON.parse(results))
+        const arr = JSON.parse(results)
+
+        for (const b of arr) {
+            const img = await getCoverImage(b);
+            console.log(img)
+            b["image"] = img;
+        }
+        
+        setBooks(arr)
         setGenerating("");
     }
 
     const addBook = (book) => {
         const id = uuid();
         const title = book.title;
-        const image = 'https://via.placeholder.com/128x196?text=No+Image';
+        const image = book.image;
 
         if (!title) {
             return;

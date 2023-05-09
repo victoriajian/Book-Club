@@ -3,7 +3,7 @@ import { v4 as uuid } from "uuid";
 
 import store from "../utils/store";
 import Navbar from "../components/Navbar";
-import { exploreBooks } from "../utils/exploreAPI";
+import { exploreBooks, getCoverImage } from "../utils/exploreAPI";
 import PreferencesSurvey from "../components/explore/Preferences";
 import SurveyComponent from "../components/explore/Survey";
 
@@ -26,14 +26,14 @@ const Book = ({ book }) => {
     const author = book.author ? book.author : '';
     const description = book.description?.substr(0, 400) || '';
     // const isbn = book.isbn;
-    // const thumbnail = isbn ? `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg` : 'https://via.placeholder.com/128x196?text=No+Image';
+    const image = book.image ? book.image : 'https://via.placeholder.com/128x196?text=No+Image';
 
     return (
         <div>
-            {/* <img src={thumbnail} alt={`Cover of ${title}`} /> */}
+            <img src={image} alt={`Cover of ${title}`} />
             <h3>{title}</h3>
             <p><b>by {author}</b></p>
-            <br />
+            {/* <br /> */}
             <p>{description}</p>
         </div>
     );
@@ -41,23 +41,23 @@ const Book = ({ book }) => {
 
 const Recommend = () => {
     const [dashData, setDashData] = useState(initialState);
-
     const [bookQuery, setBookQuery] = useState("");
-    const [numQuery, setNumQuery] = useState("");
-
     const [books, setBooks] = useState([]);
-
-    const [recs, setRecs] = useState("");
-
     const [generating, setGenerating] = useState("");
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         setGenerating("\nGenerating...");
         const results = await exploreBooks(bookQuery);
-        setRecs(results);
 
         const arr = JSON.parse(results);
+        console.log(arr)
+        for (const b of arr) {
+            const img = await getCoverImage(b);
+            console.log(img)
+            b["image"] = img;
+        }
+        
         setBooks(arr);
         setGenerating("");
     }
@@ -66,16 +66,12 @@ const Recommend = () => {
         setBookQuery(event.target.value);
     };
 
-    const handleNumQueryChange = (event) => {
-        setNumQuery(event.target.value);
-    };
-
     // add to dashboard
 
     const addBook = (book) => {
         const id = uuid();
         const title = book.title;
-        const image = 'https://via.placeholder.com/128x196?text=No+Image';
+        const image = book.image;
 
         if (!title) {
             return;

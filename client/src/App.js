@@ -16,7 +16,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Dashboard />} />
         <Route exact path="/search" element={<Search />} />
-        <Route exact path="/explore/first" element={<Explore />} />
+        <Route exact path="/explore" element={<Explore />} />
         <Route exact path="/bookclub" element={<BookClub />} />
       </Routes>
     </Router>
