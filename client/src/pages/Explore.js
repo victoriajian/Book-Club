@@ -89,6 +89,7 @@ const Recommend = () => {
             ...dashData,
             lists: {
                 ...dashData.lists,
+                ["to-read"]: list,
             },
         };
         setDashData(newState);
